@@ -21,7 +21,9 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
-        ChromeOptions options = new();
+        var options = new ChromeOptions();
+        var tempUserDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        options.AddArgument($"--user-data-dir={tempUserDir}");
         options.AddArgument("--headless");
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
