@@ -15,7 +15,7 @@ using NUnit.Framework;
 public class TC01IfUserIsInvalidTryAgainTest
 {
     private IWebDriver driver;
-    public IDictionary<string, object> vars { get; private set; }
+    public IDictionary<string, object> Vars { get; private set; }
     private IJavaScriptExecutor js;
 
     [SetUp]
@@ -30,17 +30,17 @@ public class TC01IfUserIsInvalidTryAgainTest
        
         driver = new ChromeDriver();
         js = (IJavaScriptExecutor)driver;
-        vars = new Dictionary<string, object>();
+        Vars = new Dictionary<string, object>();
     }
 
     [TearDown]
     protected void TearDown()
     {
-        driver.Quit(); driver.Close();
+        driver.Quit();
     }
 
     [Test]
-    public void tC01IfUserIsInvalidTryAgain()
+    public void TC01IfUserIsInvalidTryAgain()
     {
         // Test name: TC01 - If User Is Invalid Try Again
         // Step # | name | target | value
@@ -63,9 +63,9 @@ public class TC01IfUserIsInvalidTryAgainTest
         // 9 | click | css=*[data-test="login-button"] | 
         driver.FindElement(By.CssSelector("*[data-test=\"login-button\"]")).Click();
         // 10 | storeText | css=*[data-test="error"] | errorMessage
-        vars["errorMessage"] = driver.FindElement(By.CssSelector("*[data-test=\"error\"]")).Text;
+        Vars["errorMessage"] = driver.FindElement(By.CssSelector("*[data-test=\"error\"]")).Text;
         // 11 | if |  ${errorMessage} === "Epic sadface: Username and password do not match any user in this service" | 
-        if ((Boolean)js.ExecuteScript("return (arguments[0] === \'Epic sadface: Username and password do not match any user in this service\')", vars["errorMessage"]))
+        if ((Boolean)js.ExecuteScript("return (arguments[0] === \'Epic sadface: Username and password do not match any user in this service\')", Vars["errorMessage"]))
         {
             // 12 | echo | Wrong username | 
             Console.WriteLine("Wrong username");
