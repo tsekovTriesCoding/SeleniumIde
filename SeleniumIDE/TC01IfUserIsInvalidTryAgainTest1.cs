@@ -21,7 +21,7 @@ public class TC01IfUserIsInvalidTryAgainTest
     [SetUp]
     public void SetUp()
     {
-        ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new();
         options.AddArgument("--headless");
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
