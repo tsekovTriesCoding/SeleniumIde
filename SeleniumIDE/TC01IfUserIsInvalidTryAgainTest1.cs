@@ -22,8 +22,7 @@ public class TC01IfUserIsInvalidTryAgainTest
     public void SetUp()
     {
         var options = new ChromeOptions();
-        var tempUserDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        options.AddArgument($"--user-data-dir={tempUserDir}");
+       
         options.AddArgument("--headless");
         options.AddArgument("--no-sandbox");
         options.AddArgument("--disable-dev-shm-usage");
@@ -38,8 +37,12 @@ public class TC01IfUserIsInvalidTryAgainTest
     [TearDown]
     protected void TearDown()
     {
-        driver.Quit();
-        driver.Dispose();
+        if (driver != null)
+        {
+            driver.Quit();
+            driver.Dispose();
+            driver = null;
+        }
     }
 
     [Test]
